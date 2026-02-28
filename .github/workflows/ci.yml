@@ -20,15 +20,9 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@d96bc962e61b3049ce8128d03d57a1144fa96539 # main
       - uses: DeterminateSystems/magic-nix-cache-action@cec65ff6f104850203b152861d3f9e5f1747885d # main
 
-      - name: Restore Cargo cache
-        uses: actions/cache/restore@v4
+      - uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # v2.8.2
         with:
-          path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            target
-          key: cargo-${{ hashFiles('Cargo.lock', 'flake.lock', 'rust-toolchain.toml') }}
-          restore-keys: cargo-
+          save-if: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Format
         run: nix develop --command cargo fmt --check
@@ -38,13 +32,3 @@ jobs:
 
       - name: Test
         run: nix develop --command cargo nextest run --locked --workspace
-
-      - name: Save Cargo cache
-        if: github.ref == 'refs/heads/main'
-        uses: actions/cache/save@v4
-        with:
-          path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            target
-          key: cargo-${{ hashFiles('Cargo.lock', 'flake.lock', 'rust-toolchain.toml') }}
