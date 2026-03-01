@@ -9,3 +9,7 @@ bytes = { workspace = true }
 notify = { workspace = true }
 interfaces = { workspace = true }
 tracing = { workspace = true }
+
+[dev-dependencies]
+mockall = { workspace = true }
+tempfile = { workspace = true }
