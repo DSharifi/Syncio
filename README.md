@@ -1,6 +1,6 @@
 # Syncio
 
-A P2P Sync Service
+A P2P Sync Service similar to syncthings, written in rust.
 
 ## Planned Clients
 
