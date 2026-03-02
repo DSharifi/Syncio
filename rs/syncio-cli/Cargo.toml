@@ -1,0 +1,11 @@
+[package]
+name = "syncio-cli"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+clap = { workspace = true, features = ["derive"] }
+iroh = { workspace = true }
+orchestrator = { workspace = true }
+serde = { workspace = true }
+tokio = { workspace = true }
